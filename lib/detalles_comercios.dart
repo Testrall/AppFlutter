@@ -74,11 +74,17 @@ class _DetallesComerciosState extends State<DetallesComercios> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              widget.business['image']!,
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(Icons.image_not_supported);
-              },
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                widget.business['image']!,
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Icon(Icons.image_not_supported, size: 200);
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -87,19 +93,27 @@ class _DetallesComerciosState extends State<DetallesComercios> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(
-              height: 300,
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(latitude, longitude),
-                  zoom: 15,
-                ),
-                markers: {
-                  Marker(
-                    markerId: MarkerId(widget.business['name']!),
-                    position: LatLng(latitude, longitude),
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.teal, width: 2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              height: 250,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(latitude, longitude),
+                    zoom: 15,
                   ),
-                },
+                  markers: {
+                    Marker(
+                      markerId: MarkerId(widget.business['name']!),
+                      position: LatLng(latitude, longitude),
+                    ),
+                  },
+                ),
               ),
             ),
           ],
