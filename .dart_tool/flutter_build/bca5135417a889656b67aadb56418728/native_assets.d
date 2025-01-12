@@ -1,0 +1,1 @@
+ C:\\Users\\tlacu\\OneDrive\\Documentos\\ProyectosFlutter\\AppComercios\\appcomercios\\.dart_tool\\flutter_build\\bca5135417a889656b67aadb56418728\\native_assets.yaml: 
